@@ -16,10 +16,10 @@ describe('test searching function', function() {
   console.log(JSON.parse(result).result.songs[0].mp3Url)
   assert(JSON.parse(result).result.songs[0].name === '大海')
   done()
-  })
+  }
   catch(err) { done(err) })
   })
-})
+
 
 //test lyric fetching
 //test music url fetching
