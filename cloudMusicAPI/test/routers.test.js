@@ -1,25 +1,60 @@
 
 // test searching
-const crypto = require('crypto')
-const assert = require('assert')
-const { createRequest } = require('../utils/util')
+var assert = require('assert')
+var {createRequest} = require('../utils/util')
 
-describe('test searching function', function() {
-  it('check if the name captured is identical to the one entered', function() {
-    const s = '大海'
-    const stype = 1
-    const data =
-      's=' + s  + '&type=' + stype + '&offset=0'
+describe('test searching function', function () {
+  it('the name captured is identical to the one entered', function (done) {
+    var s = '可不可以', stype = 1
+    var data = 's=' + s + '&type=' + stype + '&offset=0'
     
-  createRequest('/api/search/pc/', 'POST', data)
-  try {
-  console.log(JSON.parse(result).result.songs[0].mp3Url)
-  assert(JSON.parse(result).result.songs[0].name === '大海')
-  done()
-  }
-  catch(err) { done(err) })
+  
+    createRequest('/api/search/pc/', 'POST', data)
+    .then(result => {
+      console.info(JSON.parse(result).result.songs[0].mp3Url)
+      assert(JSON.parse(result).result.songs[0].name === '可不可以')
+      done()
+      })
+      .catch(err => {
+        done(err)
+      })
+    
   })
+})
 
 
 //test lyric fetching
-//test music url fetching
+describe('test lyric fetching', function () {
+  it('should not be empty', function (done) {
+    var music_id = 268547
+    createRequest(
+      '/api/song/lyric?os=osx&id=' + music_id + '&lv=-1&kv=-1&tv=-1',
+      'GET',
+      null
+    )
+    .then(data => {
+      assert.notEqual(data, null)
+      done()
+    })
+    .catch(err => {
+      done(err)
+    })
+  })
+  it('data should include lrc ', function (done) {
+    var music_id = 268547
+    createRequest(
+      '/api/song/lyric?os=osx&id=' + music_id + '&lv=-1&kv=-1&tv=-1',
+      'GET',
+      null
+    )
+      .then(result => {
+        assert(typeof JSON.parse(result).lrc !== 'undefined')
+        done()
+      })
+      .catch(err => {
+        done(err)
+      })
+  })
+  
+})
+
