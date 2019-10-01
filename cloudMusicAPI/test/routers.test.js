@@ -4,9 +4,9 @@ var assert = require('assert')
 var {createRequest} = require('../utils/util')
 
 describe('test searching function', function () {
-  it('the name captured is identical to the one entered', function (done) {
+  it('the name captured should be identical to the one entered', function (done) {
     var s = '可不可以', stype = 1
-    var data = 's=' + s + '&type=' + stype + '&offset=0'
+    var data = 's=' + s + '&type=' + stype 
     
   createRequest('/api/search/pc/', 'POST', data)
     .then(result => {
@@ -17,8 +17,8 @@ describe('test searching function', function () {
       .catch(err => {done(err)})
   })
   it('Response Status Codes should be 200', function (done) {
-    var s = 'so crazy', stype = 1
-    var data = 's=' + s + '&type=' + stype + '&offset=0'
+    var s = '可不可以', stype = 1
+    var data = 's=' + s + '&type=' + stype 
     
   createRequest('/api/search/pc/', 'POST', data)
     .then(result => {
@@ -63,3 +63,17 @@ describe('test lyric fetching', function () {
   
 })
 
+//test error handling
+describe('test error handling', function () {
+  it('should return message', function (done) {
+      
+
+
+    
+      assert.equal(msg, '出错了！')
+      done()
+    })
+    .catch(err => {
+      done(err)
+    })
+  })
