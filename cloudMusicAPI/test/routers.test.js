@@ -1,21 +1,10 @@
 
-// test searching
+// test the searching function
 var assert = require('assert')
 var {createRequest} = require('../utils/util')
 
-describe('test searching function', function () {
-  it('the name captured should be identical to the one entered', function (done) {
-    var s = '可不可以', stype = 1
-    var data = 's=' + s + '&type=' + stype 
-    
-  createRequest('/api/search/pc/', 'POST', data)
-    .then(result => {
-      console.info(JSON.parse(result).result.songs[0].mp3Url)
-      assert(JSON.parse(result).result.songs[0].name === '可不可以')
-      done()
-      })
-      .catch(err => {done(err)})
-  })
+describe('the searching function', function () {
+  // test if it connects successfully
   it('Response Status Codes should be 200', function (done) {
     var s = '可不可以', stype = 1
     var data = 's=' + s + '&type=' + stype 
@@ -29,11 +18,25 @@ describe('test searching function', function () {
     })
     .catch(err => {done(err)})
   })
+  // test if it catches info correctly
+  it('the name captured should be identical to the one entered', function (done) {
+    var s = '可不可以', stype = 1
+    var data = 's=' + s + '&type=' + stype 
+    
+  createRequest('/api/search/pc/', 'POST', data)
+    .then(result => {
+      console.info(JSON.parse(result).result.songs[0].mp3Url)
+      assert(JSON.parse(result).result.songs[0].name === '可不可以')
+      done()
+      })
+      .catch(err => {done(err)})
+  })
 })
 
 
-//test lyric fetching
-describe('test lyric fetching', function () {
+// test the lyric fetching function
+describe('the lyric fetching function', function () {
+  // test if it fetches info
   it('should not be empty', function (done) {
     var music_id = 268547
     createRequest(
@@ -47,6 +50,7 @@ describe('test lyric fetching', function () {
       done(err)
     })
   })
+  // test if it fetches the right info
   it('should have lrc', function (done) {
     var music_id = 268547
     createRequest(
@@ -63,17 +67,4 @@ describe('test lyric fetching', function () {
   
 })
 
-//test error handling
-describe('test error handling', function () {
-  it('should return message', function (done) {
-      
 
-
-    
-      assert.equal(msg, '出错了！')
-      done()
-    })
-    .catch(err => {
-      done(err)
-    })
-  })
