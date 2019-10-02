@@ -11,7 +11,6 @@ describe('the searching function', function () {
     createRequest('/api/search/pc/', 'POST', data)
     .then(result => {
       var rscode = JSON.parse(result).code
-        console.log('code:' + rscode)
         assert(rscode == 200)
         done()
     })
@@ -21,8 +20,8 @@ describe('the searching function', function () {
   it('the name captured should be identical to the one entered', function (done) {
     createRequest('/api/search/pc/', 'POST', data)
     .then(result => {
-      console.info(JSON.parse(result).result.songs[0].mp3Url)
-      assert(JSON.parse(result).result.songs[0].name === '可不可以')
+      var obj = JSON.parse(result).result.songs[0]
+      assert(obj.name === '可不可以')
       done()
       })
       .catch(err => {done(err)})
@@ -39,7 +38,8 @@ describe('the lyric fetching function', function () {
       '/api/song/lyric?os=osx&id=' + music_id + '&lv=-1&kv=-1&tv=-1', 'GET', null
     )
     .then(result => {
-      assert.notEqual(result, null)
+      var obj = JSON.parse(result).lrc
+      assert.notEqual(obj, null)
       done()
     })
     .catch(err => {
@@ -52,7 +52,8 @@ describe('the lyric fetching function', function () {
       '/api/song/lyric?os=osx&id=' + music_id + '&lv=-1&kv=-1&tv=-1','GET', null
     )
       .then(result => {
-        assert(typeof JSON.parse(result).lrc !== 'undefined')
+        var obj = JSON.parse(result).lrc
+        assert(typeof obj !== 'undefined')
         done()
       })
       .catch(err => {
@@ -61,5 +62,3 @@ describe('the lyric fetching function', function () {
   })
   
 })
-
-
