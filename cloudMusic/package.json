@@ -4,7 +4,7 @@
   "description": "webpack app description",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "nyc --reporter=text mocha--require @babel/register",
     "dev": "webpack-dev-server --devtool --progress",
     "build": "webpack -p"
   },
@@ -45,6 +45,7 @@
     "md5": "^2.2.1",
     "node-gyp": "^3.6.2",
     "node-vibrant": "^3.0.0-alpha.2",
+    "nyc": "^14.1.1",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-redux": "^5.0.3",
