@@ -2,6 +2,7 @@
 // test the searching function
 var assert = require('assert')
 var {createRequest} = require('../utils/util')
+var crypto = require('crypto')
 
 describe('the searching function', function () {
   var s = '可不可以', stype = 1
