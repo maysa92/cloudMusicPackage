@@ -118,7 +118,7 @@ function createRequest(path, method, data, callback, errorcallback) {
         })
       }
     )
-    if (method == 'POST') {
+    if (method == 'PUT') {   //change from POST to PUT
       http_client.write(data)
     }
     http_client.end()
