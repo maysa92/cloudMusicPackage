@@ -1,2 +1,3 @@
 # cloudMusicPackage
-网易云音乐api - this is a project for software testing.
+网易云音乐api - A project for Software Testing.
+Please find all materials in cloudMusicAPI/test
