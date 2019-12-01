@@ -1,8 +1,10 @@
 
-// test the song searching 
+ 
 var assert = require('assert')
+var crypto = require('crypto')
 var {createRequest} = require('../utils/util')
 
+// test the song searching
 describe('the song searching', function () {
   var s = '可不可以', stype = 1
   var data = 's=' + s + '&type=' + stype 
