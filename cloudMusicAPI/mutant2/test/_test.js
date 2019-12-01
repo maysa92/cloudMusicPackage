@@ -1,10 +1,10 @@
 
-// test the searching function
+// test the song searching 
 var assert = require('assert')
 var {createRequest} = require('../utils/util')
 var crypto = require('crypto')
 
-describe('the searching function', function () {
+describe('the song searching', function () {
   var s = '可不可以', stype = 1
   var data = 's=' + s + '&type=' + stype 
   // test if it connects successfully
@@ -30,8 +30,8 @@ describe('the searching function', function () {
 })
 
 
-// test the lyric fetching function
-describe('the lyric fetching function', function () {
+// test the lyric fetching 
+describe('the lyric fetching', function () {
   var music_id = 268547
   // test if it fetches info
   it('should not be empty', function (done) {
@@ -48,7 +48,7 @@ describe('the lyric fetching function', function () {
     })
   })
   // test if it fetches the right info
-  it('should have lrc', function (done) {
+  it('should have "lrc"', function (done) {
     createRequest(
       '/api/song/lyric?os=osx&id=' + music_id + '&lv=-1&kv=-1&tv=-1','GET', null
     )
