@@ -1,6 +1,7 @@
 
 // test the song searching 
 var assert = require('assert')
+var crypto = require('crypto')
 var {createRequest} = require('../utils/util')
 
 
